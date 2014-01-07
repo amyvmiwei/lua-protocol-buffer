@@ -89,6 +89,11 @@ bool CLuaGenerator::Generate(const FileDescriptor* file,
 
 	// Generate cc file.
 	{
+		// 把basename里面的.pb换成_pb.
+		std::string strBaseName = basename;
+		std::replace(strBaseName.begin(), strBaseName.end(), '.', '_');
+		basename = strBaseName;
+
 	 	scoped_ptr<io::ZeroCopyOutputStream> output(
 	 		generator_context->Open(basename + ".lua"));
 	 	io::Printer printer(output.get(), '$');

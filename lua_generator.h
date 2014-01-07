@@ -10,7 +10,7 @@ namespace protobuf {
 namespace compiler {
 namespace mwpb_lua {
 
-	class CLuaGenerator : public CodeGenerator
+	class LIBPROTOC_EXPORT CLuaGenerator : public CodeGenerator
 	{
 	public:
 		CLuaGenerator();

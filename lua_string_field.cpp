@@ -428,17 +428,19 @@ namespace mwpb_lua {
 
 	void RepeatedStringFieldGenerator::
 		GenerateMergeFromCodedStream(io::Printer* printer) const {
+// 			printer->Print(variables_,
+// 				"DO_(::google::protobuf::internal::WireFormatLite::Read$declared_type$(\n"
+// 				"      input, this->add_$name$()));\n");
+// 			if (HasUtf8Verification(descriptor_->file()) &&
+// 				descriptor_->type() == FieldDescriptor::TYPE_STRING) {
+// 					printer->Print(variables_,
+// 						"::google::protobuf::internal::WireFormat::VerifyUTF8String(\n"
+// 						"  this->$name$(this->$name$_size() - 1).data(),\n"
+// 						"  this->$name$(this->$name$_size() - 1).length(),\n"
+// 						"  ::google::protobuf::internal::WireFormat::PARSE);\n");
+// 			}
 			printer->Print(variables_,
-				"DO_(::google::protobuf::internal::WireFormatLite::Read$declared_type$(\n"
-				"      input, this->add_$name$()));\n");
-			if (HasUtf8Verification(descriptor_->file()) &&
-				descriptor_->type() == FieldDescriptor::TYPE_STRING) {
-					printer->Print(variables_,
-						"::google::protobuf::internal::WireFormat::VerifyUTF8String(\n"
-						"  this->$name$(this->$name$_size() - 1).data(),\n"
-						"  this->$name$(this->$name$_size() - 1).length(),\n"
-						"  ::google::protobuf::internal::WireFormat::PARSE);\n");
-			}
+				"$classname$.add_$name$(pb_Read_$declared_type$())\n");
 	}
 
 	void RepeatedStringFieldGenerator::

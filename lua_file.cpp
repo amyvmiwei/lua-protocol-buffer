@@ -86,9 +86,13 @@ namespace mwpb_lua {
 
 
 		for (int i = 0; i < file_->dependency_count(); i++) {
-			//printer->Print(
-			//	"#include \"$dependency$.pb.h\"\n",
-			//	"dependency", StripProto(file_->dependency(i)->name()));
+// 			printer->Print(
+// 				"#include \"$dependency$.pb.h\"\n",
+// 				"dependency", StripProto(file_->dependency(i)->name()));
+
+			printer->Print(
+				"require \"$dependency$_pb\"\n",
+				"dependency", StripProto(file_->dependency(i)->name()));
 		}
 
 
